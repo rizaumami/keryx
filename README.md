@@ -36,7 +36,7 @@ Ubuntu users need the following packages in order to have `wxPython` successfull
 * python-wxversion
 * python-wxgtk2.8
 
-`wxPython` is only required for using `Keryx's` interface. Project creation can be done via command line parameters. See **USAGE** for more information.
+`wxPython` is only required for using `Keryx`'s interface. Project creation can be done via command line parameters. See **USAGE** for more information.
 
 ### Installation Instructions
 
@@ -81,6 +81,12 @@ Extract the newest version over top, replacing all files.
 * Ingelrest François - Plugin framework base
 * heylove - Logo is based off areao.42-Icons
 * Anyone else I forgot to mention
+
+### Projects/Profile Contributors
+
+* @ariesm : elementaryos-freya-32bit, ubuntu-14.10-64bit, lxle-14.04.2-64bit, xubuntu-14.04.2-64bit
+* @mas_aiz : linuxmint-17-kde-64bit
+* @isnusindang : elementaryos-freya-32bit, kubuntu-15.04-32bit, ubuntu-14.10-32bit
 
 ### Additional Notes:
 

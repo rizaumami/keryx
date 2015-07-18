@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# keryk_project_maker - v0.3 - si_kabayan - Sat, 2015-07-18 16:12:45 +0700
+# keryk_project_maker - v0.4 - si_kabayan - Sun, 2015-07-19 04:07:24 +0700
 
 # variables --------------------------------------------------------------------
 
@@ -126,7 +126,7 @@ mkdir -p $map_proj
 
 if [[ $is_slim = yes ]] ; then
   mkdir -p $map_proj/{sources,lists}
-  cp $sumber/etc/apt/sources.list $map_proj/sources/
+  cp -rT $sumber/etc/apt/ $map_proj/sources 2>/dev/null
   cp $sumber/var/lib/dpkg/status $map_proj/lists/
 else
   cp -rT $sumber/etc/apt/ $map_proj/sources 2>/dev/null
@@ -199,6 +199,7 @@ fi
       
 # log --------------------------------------------------------------------------
 #
+# 2015/07/19  v0.4  * Fix slim option logic
 # 2015/07/18  v0.3  * Add -s (slim) switch.
 #                     Versi sebelumnya menghasilkan berkas profil berukutan besar
 #                     V0.3 diberi switch, jika memilih slim maka hanya akan 
