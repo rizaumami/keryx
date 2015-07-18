@@ -48,9 +48,9 @@ Extract the `Keryx` archive anywhere (typically a usb device).
 
 If you are unable to install `wxPython` but have `Python` installed you can still create projects. In a console run:
 
-{% highlight sh %}
+```sh
 python keryx.py --create <project name> <plugin name>
-{% endhighlight %}
+```
 
 and `Keryx` will create a new project in the project directory. This is helpful for Ubuntu server users along with users who have not installed `wxPython` yet. The only `<plugin name>` currently available is debian.
 
@@ -86,14 +86,14 @@ Extract the newest version over top, replacing all files.
 
 Command line parameters:
 
-{% highlight sh %}
+```sh
 -h or --help                            Displays this message
 -v or --version                         Displays Keryx version number
 --create <project name> <plugin name>   Creates a new project in the default
                                         directory with name of <project name>
                                         and type project <plugin name>
 --config <file>                         Uses <file> to as configuration file
-{% endhighlight %}
+```
 
 Due to `py2exe`'s nature, information printed to the console is **NOT** displayed.
 While the command line parameters will still work properly, no indication of success will be shown in the console. The information will still be written in the log files for further review.
