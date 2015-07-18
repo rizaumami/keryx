@@ -1,0 +1,214 @@
+#!/bin/bash
+
+# keryk_project_maker - v0.3 - si_kabayan - Sat, 2015-07-18 16:12:45 +0700
+
+# variables --------------------------------------------------------------------
+
+sini="$(pwd)"
+map_tmp=$(mktemp -d /tmp/XXXXX)
+nama_kompi=$(awk '/^./{print $1}' $sumber/etc/issue.net)
+arch_kompi=$(file $sumber/bin/bash | awk '{sub(/-/, "");print $3}')
+map_proj=$map_tmp/projects/$nama_kompi
+
+# functions --------------------------------------------------------------------
+
+error() { echo -e "\e[1;31m$1\e[0;39;49m"; }
+green() { echo -e "\e[1;32m$1\e[0;39;49m"; }
+
+function help() { 
+  cat <<EOF
+  
+  Script ini berguna untuk membuat project file bagi Keryx.
+  
+  Keryx sebuah penata paket yang portable dan lintas-platform untuk distro
+  berdasar APT (Debian, Ubuntu). Keryx menyajikan antarmuka grafis untuk 
+  mendapatkan updates, paket, dan dependencies bagi komputer yang tidak 
+  terhubung ke internet (offline).
+  
+  Keryx bekerja dengan cara membuat profil (disebut project) pada komputer 
+  offline, kemudian berdasar profil ini keryx memutakhirkan dan atau memasang
+  paket di komputer yang terhubung internet, akhirnya paket yang terunduh
+  dipasang di komputer offline.
+  
+  Sayangnya pengembangan Keryx telah terhenti sejak 2011. Meski demikian, 
+  setelah dicoba ternyata Keryx masih memberikan hasil yang cukup memuaskan.
+  
+  Script ini dibuat dengan tujuan memutakhirkan koleksi profil (project) bagi 
+  Ubuntu rilis terkini.
+  
+  Perhatikan, untuk memutakhirkan Debian tidak bisa langsung dari berkas ISO 
+  layaknya Ubuntu. Karenanya, untuk membuat profil Debian, Anda diharapkan 
+  untuk menjalankan script ini langsung dari dalam sistem operasi Debian.
+  
+  Sangat disarankan dan diharapkan untuk hanya membuat profil dari berkas ISO
+  agar profil yang dihasilkan mencerminkan sistem yang seakan baru diinstall.
+  
+  Silahkan kirim profile Anda ke:
+    * riza at openmailbox dot org
+    * http://telegram.me/si_kabayan
+
+EOF
+}
+
+function usage() {
+  cat <<EOF
+   
+  usage: ${0##*/} [options]
+                      
+  options:
+  
+    -h    Tampilkan bantuan.
+  
+    -o    Membuat projects dari sistem yangs sedang dipakai.    
+          Boot ke Live environment Debian, Ubuntu dan turunannya, kemudian 
+          jalankan script. Salin berkas tar.gz ke tempat di luar live env agar
+          tidak hilang. 
+    
+    -s    Hanya membuat profil berdasar berkas sources.list dan status untuk
+          meringkas ukuran berkas profil dan meringankan proses pengunggahan.
+          Jika bandwidth bukan halangan, disarankan tidak menggunakan switch ini
+          agar profil yang dihasilkan lebih lengkap.
+
+EOF
+}
+
+function exit_clean() {
+    RETVAL=$?
+    [[ -n $(grep $map_tmp /proc/mounts) ]] && sudo umount $map_tmp/squashfs \
+    && sudo umount $map_tmp/iso 2>/dev/null
+    rm -r $map_tmp
+    exit $RETVAL
+}
+
+function pilih_iso() {
+printf ' 
+ Drag and drop berkas ISO Linux ke dalam jendela ini.
+ Atau Ketik path menuju berkas ISO Linux:\n\n'
+read -r -p ' ' lin_iso
+
+if [[ $lin_iso = \'*\' ]]
+then
+    lin_iso="${lin_iso%\'}"
+    lin_iso="${lin_iso#\'}"
+fi
+
+if [[ -f "$lin_iso" ]]
+then
+    export lin_iso="$lin_iso"
+else   
+    printf " $(error "\n ERROR: Tidak dapat menemukan berkas:\n $lin_iso")\n"
+    pilih_iso
+fi
+}
+
+function kaitkan_iso() {
+mkdir $map_tmp/{iso,squashfs}
+sudo mount -o loop,ro "$lin_iso" $map_tmp/iso
+if [ -f $map_tmp/iso/casper/filesystem.squashfs ] ; then 
+  sudo mount -o loop,ro $map_tmp/iso/casper/filesystem.squashfs $map_tmp/squashfs
+else
+  printf "%s\n" "
+  $(error "Berkas ini bukan ISO Ubuntu (dan turunannya)") jadi tidak bisa dibuatkan 
+  profil menggunakan opsi -i atau -iso melainkan -o atau --installed.
+  
+  * Buat installer dengan burning berkas ISO ke keping CD/DVD atau flash disk.
+  * Boot installer tersebut
+  * Jalankan script ini dengan opsi -o atau --installed.
+  * Simpan profil di tempat persistence agar tidak hilang jika mesin di-reboot.
+  "  
+  exit
+fi
+}
+
+function buat_proyek() {
+
+mkdir -p $map_proj
+
+if [[ $is_slim = yes ]] ; then
+  mkdir -p $map_proj/{sources,lists}
+  cp $sumber/etc/apt/sources.list $map_proj/sources/
+  cp $sumber/var/lib/dpkg/status $map_proj/lists/
+else
+  cp -rT $sumber/etc/apt/ $map_proj/sources 2>/dev/null
+  cp -r $sumber/var/lib/apt/lists $map_proj 2>/dev/null
+  cp $sumber/var/lib/dpkg/status $map_proj/lists/
+  cp $sumber/var/lib/dpkg/status $map_proj/lists/status.bak
+fi
+
+cat<< EOF >> $map_proj/debian.conf
+Computer Name: $nama_kompi
+OS Name: $nama_kompi
+OS Version: $(awk '/^./{print $2}' $sumber/etc/issue.net)
+Architecture: $arch_kompi
+Kernel: $(file $sumber/vmlinuz | awk -Fvmlinuz- '{print $2}')
+EOF
+
+printf ""$nama_kompi" \nDebian\n" > $map_proj/"$nama_kompi".keryx
+
+if [[ -x $(which 7z 2>/dev/null) ]] ; then 
+  printf '\n Memampatkan profil menggunakan 7zip, harap tunggu...\n'
+  7z a "$berkas_proj".7z $map_tmp/projects 1>/dev/null
+else
+  printf '\n Memampatkan profil menggunakan tar (lzma), harap tunggu...\n'
+  tar caf "$berkas_proj".lzma -C $map_tmp/projects .
+fi
+
+printf "%s\n" "
+ Berkas:
+ $(green "$berkas_proj")
+ telah disimpan di:
+ $(green "$(pwd)")
+"
+}
+
+# main -------------------------------------------------------------------------
+
+trap exit_clean EXIT   
+
+while getopts ':hos' flag; do
+  case $flag in
+    h)
+      help
+      exit
+      ;;
+    o)
+      is_iso=no      
+      ;;
+    s)
+      is_slim=yes
+      ;;
+    \?)
+      usage
+      exit
+      ;;
+  esac
+done
+shift $(( OPTIND - 1 ))
+
+if [[ $is_iso = no ]]; then
+  sumber=''
+  berkas_proj="$nama_kompi-$arch_kompi-$(date +%Y%m%d%H%M%S)-$(whoami)"
+  buat_proyek
+else
+  sumber=$map_tmp/squashfs
+  pilih_iso
+  kaitkan_iso    
+  berkas_proj="${lin_iso##*/}-$(date +%Y%m%d%H%M%S)-$(whoami)"
+  buat_proyek
+fi      
+      
+# log --------------------------------------------------------------------------
+#
+# 2015/07/18  v0.3  * Add -s (slim) switch.
+#                     Versi sebelumnya menghasilkan berkas profil berukutan besar
+#                     V0.3 diberi switch, jika memilih slim maka hanya akan 
+#                     menyalin berkas sources.lists dan status.
+#                     Jika bandwidth tidak menjadi halangan, disarankan untuk
+#                     tidak menggunakan slim agar profil lebih sempurna.
+#                   * Rubah struktur script ke menu menggunakan getopts.
+# 2015/07/17  v0.2  * Use higher compression ratio archive format
+#                     Gunakan 7zip jika ada, jika tidak tar dengan output lzma
+#                   * Fix trap and cleaning up tmp dir
+#                     Trap sekarang bekerja dan temporary folder dihapus.
+#                   * penamaan berkas profil yang lebih informatif.
+# 2015/07/16  v0.1  initial release
