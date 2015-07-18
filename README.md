@@ -4,13 +4,13 @@ README berikut disarikan dari berkas `doc/README`, berdasar rilis terakhir `Kery
 
 ### Version 0.92
 
-## Contact/Support:
+### Contact/Support
 
 1. Website: <del>http://keryxproject.org</del>
 2. Email: Chris Oliver <excid3@gmail.com>
 3. Launchpad Project: [http://launchpad.net/keryx](http://launchpad.net/keryx)
 
-## License:
+### License
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
@@ -18,13 +18,13 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-## Requirements
+### Requirements
 
-### Windows
+#### Windows
 
 None
 
-### Linux
+#### Linux
 
 * Python
 * wxPython
@@ -38,11 +38,11 @@ Ubuntu users need the following packages in order to have `wxPython` successfull
 
 `wxPython` is only required for using `Keryx's` interface. Project creation can be done via command line parameters. See **USAGE** for more information.
 
-## Installation Instructions
+### Installation Instructions
 
 Extract the `Keryx` archive anywhere (typically a usb device).
 
-## Usage
+### Usage
 
 `Keryx` is based around the concept of `projects`. Each project keeps track of the software versions that are installed on that computer. To get started you must first create a project on that computer.
 
@@ -63,11 +63,11 @@ Keryx will automatically select the package dependencies for you making sure tha
 
 When you are finished you can return to your project computer and install the packages through the usual way.
 
-## Uninstallation/Upgrading
+### Uninstallation/Upgrading
 
 Extract the newest version over top, replacing all files.
 
-## Thanks
+### Thanks
 
 * Buran Ayuthia
 * John Gleissner
@@ -82,7 +82,7 @@ Extract the newest version over top, replacing all files.
 * heylove - Logo is based off areao.42-Icons
 * Anyone else I forgot to mention
 
-## Additional Notes:
+### Additional Notes:
 
 Command line parameters:
 
