@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# keryk_project_maker - v0.4 - si_kabayan - Sun, 2015-07-19 04:07:24 +0700
+# keryk_project_maker - v0.4 - si_kabayan - Sun, Sun, 2015-07-19 15:13:07 +0700
 
 # variables --------------------------------------------------------------------
 
@@ -8,32 +8,36 @@ sini="$(pwd)"
 map_tmp=$(mktemp -d /tmp/XXXXX)
 nama_kompi=$(awk '/^./{print $1}' $sumber/etc/issue.net)
 arch_kompi=$(file $sumber/bin/bash | awk '{sub(/-/, "");print $3}')
-map_proj=$map_tmp/projects/$nama_kompi
 
 # functions --------------------------------------------------------------------
 
-error() { echo -e "\e[1;31m$1\e[0;39;49m"; }
-green() { echo -e "\e[1;32m$1\e[0;39;49m"; }
+function error() {
+  echo -e "\e[1;31m$1\e[0;39;49m"; 
+}
+
+function green() {
+  echo -e "\e[1;32m$1\e[0;39;49m"; 
+}
 
 function help() { 
   cat <<EOF
   
-  Script ini berguna untuk membuat project file bagi Keryx.
+  Script ini berguna untuk membuat berkas profil bagi Keryx.
   
-  Keryx sebuah penata paket yang portable dan lintas-platform untuk distro
-  berdasar APT (Debian, Ubuntu). Keryx menyajikan antarmuka grafis untuk 
+  Keryx adalah sebuah penata paket yang portable dan lintas-platform untuk
+  distro berdasar APT (Debian, Ubuntu). Keryx menyajikan antarmuka grafis untuk 
   mendapatkan updates, paket, dan dependencies bagi komputer yang tidak 
   terhubung ke internet (offline).
   
   Keryx bekerja dengan cara membuat profil (disebut project) pada komputer 
   offline, kemudian berdasar profil ini keryx memutakhirkan dan atau memasang
   paket di komputer yang terhubung internet, akhirnya paket yang terunduh
-  dipasang di komputer offline.
+  kemudian dipasang di komputer offline.
   
-  Sayangnya pengembangan Keryx telah terhenti sejak 2011. Meski demikian, 
+  Sayangnya, pengembangan Keryx telah terhenti sejak 2011. Meski demikian, 
   setelah dicoba ternyata Keryx masih memberikan hasil yang cukup memuaskan.
   
-  Script ini dibuat dengan tujuan memutakhirkan koleksi profil (project) bagi 
+  Script ini dibuat dengan tujuan memutakhirkan koleksi profil (projects) bagi 
   Ubuntu rilis terkini.
   
   Perhatikan, untuk memutakhirkan Debian tidak bisa langsung dari berkas ISO 
@@ -41,9 +45,10 @@ function help() {
   untuk menjalankan script ini langsung dari dalam sistem operasi Debian.
   
   Sangat disarankan dan diharapkan untuk hanya membuat profil dari berkas ISO
-  agar profil yang dihasilkan mencerminkan sistem yang seakan baru diinstall.
+  atau live environment agar profil yang dihasilkan mencerminkan sistem yang 
+  seakan baru diinstall.
   
-  Silahkan kirim profile Anda ke:
+  Silahkan kirim profil buatan Anda ke:
     * riza at openmailbox dot org
     * http://telegram.me/si_kabayan
 
@@ -58,16 +63,18 @@ function usage() {
   options:
   
     -h    Tampilkan bantuan.
+    
+    -i    Membuat profil dari berkas ISO Ubuntu dan turunannya.
   
-    -o    Membuat projects dari sistem yangs sedang dipakai.    
+    -o    Membuat profil dari sistem yangs sedang dipakai.    
           Boot ke Live environment Debian, Ubuntu dan turunannya, kemudian 
           jalankan script. Salin berkas tar.gz ke tempat di luar live env agar
           tidak hilang. 
     
-    -s    Hanya membuat profil berdasar berkas sources.list dan status untuk
-          meringkas ukuran berkas profil dan meringankan proses pengunggahan.
+    -s    Membuat profil berdasar map /etc/apt dan status untuk meringkas
+          ukuran berkas profil dan meringankan proses pengunggahan.
           Jika bandwidth bukan halangan, disarankan tidak menggunakan switch ini
-          agar profil yang dihasilkan lebih lengkap.
+          agar berkas profil yang dihasilkan lebih lengkap.
 
 EOF
 }
@@ -122,7 +129,19 @@ fi
 
 function buat_proyek() {
 
-mkdir -p $map_proj
+if [[ $is_iso = yes ]]; then
+  keryx_name=${lin_iso##*/}
+  keryx_name=${keryx_name%%.iso}
+  map_proj=$map_tmp/projects/$keryx_name
+  mkdir -p $map_proj
+  printf ""$keryx_name"\nDebian\n" > $map_proj/"$keryx_name".keryx
+else
+  if [[ $is_iso = no ]]; then
+    map_proj=$map_tmp/projects/$nama_kompi
+    mkdir -p $map_proj
+    printf ""$nama_kompi" \nDebian\n" > $map_proj/"$nama_kompi".keryx
+  fi
+fi
 
 if [[ $is_slim = yes ]] ; then
   mkdir -p $map_proj/{sources,lists}
@@ -143,7 +162,7 @@ Architecture: $arch_kompi
 Kernel: $(file $sumber/vmlinuz | awk -Fvmlinuz- '{print $2}')
 EOF
 
-printf ""$nama_kompi" \nDebian\n" > $map_proj/"$nama_kompi".keryx
+#printf ""$nama_kompi" \nDebian\n" > $map_proj/"$nama_kompi".keryx
 
 if [[ -x $(which 7z 2>/dev/null) ]] ; then 
   printf '\n Memampatkan profil menggunakan 7zip, harap tunggu...\n'
@@ -165,14 +184,33 @@ printf "%s\n" "
 
 trap exit_clean EXIT   
 
-while getopts ':hos' flag; do
+if [[ -z $1 ]]; then
+  usage
+  exit $(( $# ? 0 : 1 ))
+fi
+
+while getopts ':hios' flag; do
   case $flag in
     h)
       help
+      usage
       exit
       ;;
+    i)
+      if [ -z ${is_iso+no} ]; then
+        is_iso=yes
+      else
+        printf " $(error "Hanya gunakan -i ATAU -o, jangan keduanya!")\n"
+        exit
+      fi
+      ;;
     o)
-      is_iso=no      
+      if [ -z ${is_iso+yes} ]; then
+        is_iso=no
+      else
+        printf " $(error "Hanya gunakan -i ATAU -o, jangan keduanya!")\n"
+        exit
+      fi 
       ;;
     s)
       is_slim=yes
@@ -187,19 +225,25 @@ shift $(( OPTIND - 1 ))
 
 if [[ $is_iso = no ]]; then
   sumber=''
-  berkas_proj="$nama_kompi-$arch_kompi-$(date +%Y%m%d%H%M%S)-$(whoami)"
+  berkas_proj="$nama_kompi-$arch_kompi-$(whoami)"
   buat_proyek
 else
-  sumber=$map_tmp/squashfs
-  pilih_iso
-  kaitkan_iso    
-  berkas_proj="${lin_iso##*/}-$(date +%Y%m%d%H%M%S)-$(whoami)"
-  buat_proyek
+  if [[ $is_iso = yes ]]; then
+    sumber=$map_tmp/squashfs
+    pilih_iso
+    kaitkan_iso    
+    berkas_proj="${lin_iso##*/}-$(whoami)"
+    buat_proyek
+  fi
 fi      
       
 # log --------------------------------------------------------------------------
 #
-# 2015/07/19  v0.4  * Fix slim option logic
+# 2015/07/19  v0.4  * Change slim option logic.
+#                     Distro terkini dan turunannya seringkali memuat 
+#                     sources.list tidak hanya di /etc/apt/sources.list, jadi 
+#                     untuk amannya semua map /etc/apt harus disalin.
+#                   * Penamaan dan isi berkas *.keryx yang lebih informatif.
 # 2015/07/18  v0.3  * Add -s (slim) switch.
 #                     Versi sebelumnya menghasilkan berkas profil berukutan besar
 #                     V0.3 diberi switch, jika memilih slim maka hanya akan 
