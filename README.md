@@ -42,15 +42,15 @@ Klik ganda untuk menjalankan `win32/keryx.exe` dalam Windows.
 
 Pasang paket berikut:
 
-* Python
-* wxPython
+* `Python`
+* `wxPython`
 
 Pengguna Ubuntu perlu untuk memasang paket berikut agar `wxPython` terpasang sempurna:
 
-* libwxbase2.8-0
-* libwxgtk2.8-0
-* python-wxversion
-* python-wxgtk2.8
+* `libwxbase2.8-0`
+* `libwxgtk2.8-0`
+* `python-wxversion`
+* `python-wxgtk2.8`
 
 `wxPython` hanya diperlukan untuk menggunakan antarmuka grafis `Keryx`. Pembuatan *Project* dapat dilakukan menggunakan baris perintah. Lihat **USAGE** untuk keterangan lebih lanjut.
 
@@ -81,15 +81,11 @@ Setelah selesai, kembali ke komputer (*offline*) dan pasang paket seperti biasa.
 
 ### Thanks
 
-```sh
-*Original thanks* dapat dibaca di  doc/README
-```
+#### Kontributor Project/Profil
 
-#### Projects/Profile Contributors
-
-* @ariesm : elementaryos-freya-32bit, ubuntu-14.10-64bit, lxle-14.04.2-64bit, xubuntu-14.04.2-64bit
-* @mas_aiz : linuxmint-17-kde-64bit
-* @isnusindang : elementaryos-freya-32bit, kubuntu-15.04-32bit, ubuntu-14.10-32bit
+* [@ariesm](http://telegram.me/ariesm) : [elementaryos-freya-64bit](https://github.com/rizaumami/keryx/blob/master/projects/elementaryos-freya-64bit.7z), [ubuntu-14.10-64bit](https://github.com/rizaumami/keryx/blob/master/projects/ubuntu-14.10-64bit.7z), [lxle-14.04.2-64bit](https://github.com/rizaumami/keryx/blob/master/projects/lxle-14.04.2-64bit.7z), [xubuntu-14.04.2-64bit](https://github.com/rizaumami/keryx/blob/master/projects/xubuntu-14.04.2-64bit.7z)
+* [@mas_aiz](http://telegram.me/mas_aiz) : [linuxmint-17-kde-64bit](https://github.com/rizaumami/keryx/blob/master/projects/linuxmint-17-kde-64bit.7z)
+* [@isnusindang](http://telegram.me/isnusindang) : [elementaryos-freya-32bit](https://github.com/rizaumami/keryx/blob/master/projects/elementaryos-freya-32bit.7z), [kubuntu-15.04-32bit](https://github.com/rizaumami/keryx/blob/master/projects/kubuntu-15.04-32bit.7z), [ubuntu-14.10-32bit](https://github.com/rizaumami/keryx/blob/master/projects/ubuntu-14.10-32bit.7z)
 
 ### Catatan tambahan
 
@@ -104,5 +100,5 @@ Parameter baris perintah:
 --config <berkas>                       Gunakan <berkas> sebagai configuration file
 ```
 
-Karena sifat `py2exe`'s, keterangan yang tampil pada `console` **TIDAK** ditampilkan.
+Karena sifat `py2exe`, keterangan yang tampil pada `console` **TIDAK** ditampilkan.
 Sementara parameter baris perintah akan tetap bekerja dengan benar, tidak ada indikasi yang tampil pada `console`. Informasi akan tetap dituliskan pada berkas `log` untuk telaah lanjutan.
