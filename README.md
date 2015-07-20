@@ -1,105 +1,108 @@
 # Keryx
 
-README berikut disarikan dari berkas `doc/README`, berdasar rilis terakhir `Keryx` v0.92.4 pada 15 Maret 2010, jadi akurasinya perlu disesuaikan perkembangan GNU/Linux terkini.
+```sh
+README asli bisa dilihat di doc/README
+```
 
-### Version 0.92
+## What
 
-### Contact/Support
+`Keryx` adalah alat bantu bagi pengguna Debian, Ubuntu, dan turunannya, yang memiliki keterbatasan sambungan internet untuk mengunduh dan atau memutakhirkan sistem operasinya.
 
-1. Website: <del>http://keryxproject.org</del>
-2. Email: Chris Oliver <excid3@gmail.com>
-3. Launchpad Project: [http://launchpad.net/keryx](http://launchpad.net/keryx)
+## Who
 
-### License
+`Keryx` tidak hanya berguna bagi para fakir *bandwidth*, namun juga bagi mereka memiliki koneksi internet namun karena satu dan lain sebab komputernya tida mampu tersambung ke internet.
 
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+## Why
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+Sistem operasi selalu berkembang, baik untuk penambahan kegunaan maupun penambalan kelemahan. Jadi sistem operasi wajib untuk selalu update.
 
-You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+Kadang pula, aplikasi yang terpasang dalam sistem operasi tidak memenuhi kebutuhan pengguna. Jadi si pengguna butuh memasang aplikasi penunjang keperluannya.
 
-### Requirements
+Dua hal tidak atas tidak menjadi masalah jika komputer tersambung internet. Jika komputer tidak dapat tersambung internet, `Keryx` dapat membantu.
+
+## When
+
+`Keryx` bisa digunakan kapan saja. Walau tujuannya menolong kita yang kesulitan sambungan internet, `Keryx` bisa pula kita gunakan ketika sedang memiliki sambungan internet, misalnya menolong mereka yang komputernya tidak terhubung internet.
+
+## Where
+
+`Keryx` dapat dijalankan di GNU/Linux, Windows dan Mac, dengan syarat *dependencies*-nya terpenuhi. Lihat bagian **How** berikut.
+
+## How
+
+Berikut rincian prasyarat yang diperlukan agar `Keryx` dapat bekerja dengan benar.
 
 #### Windows
 
-None
+Tidak ada.
+
+Klik ganda untuk menjalankan `win32/keryx.exe` dalam Windows.
 
 #### Linux
+
+Pasang paket berikut:
 
 * Python
 * wxPython
 
-Ubuntu users need the following packages in order to have `wxPython` successfully installed:
+Pengguna Ubuntu perlu untuk memasang paket berikut agar `wxPython` terpasang sempurna:
 
 * libwxbase2.8-0
 * libwxgtk2.8-0
 * python-wxversion
 * python-wxgtk2.8
 
-`wxPython` is only required for using `Keryx`'s interface. Project creation can be done via command line parameters. See **USAGE** for more information.
+`wxPython` hanya diperlukan untuk menggunakan antarmuka grafis `Keryx`. Pembuatan *Project* dapat dilakukan menggunakan baris perintah. Lihat **USAGE** untuk keterangan lebih lanjut.
 
-### Installation Instructions
+### Panduan pemasangan
 
-Extract the `Keryx` archive anywhere (typically a usb device).
+Uraikan berkas `Keryx` (umumnya di perangkat usb).
 
-### Usage
+### Penggunaan
 
-`Keryx` is based around the concept of `projects`. Each project keeps track of the software versions that are installed on that computer. To get started you must first create a project on that computer.
+`Keryx` berdasarkan konsep `projects`. Tiap *project* menyimpan rekam jejak versi perangkat lunak yang terpasang pada komputer. Pertama memulai, Anda mesti membuat sebuah berkas *project* pada komputer (offline).
 
-If you are unable to install `wxPython` but have `Python` installed you can still create projects. In a console run:
+Jika dalam komputer (*offline*) tidak terdapat `wxPython` namun terpasang `Python`, Anda dapat tetpa membuat `projects` menggunakan baris perintah pada `terminal`:
 
 ```sh
 python keryx.py --create <project name> <plugin name>
 ```
 
-and `Keryx` will create a new project in the project directory. This is helpful for Ubuntu server users along with users who have not installed `wxPython` yet. The only `<plugin name>` currently available is debian.
+dan `Keryx` akan membuat sebuah `project` dalam map `projects`. Hal ini akan membantu mereka yang memasang Ubuntu *server* dan tidak umunya belum terpasang `wxPython`. Untuk sementara, hanya Debian yang tersedia bagi `<plugin name>`.
 
-Once you have created this project, make sure you have a copy on your usb device that will be used to run `Keryx` from on a computer with highspeed internet.
+Ketika selesai membuat `project` ini, pastikan untuk menyalin map `Keryx` ini ke perangkat usb yang akan Anda gunakan untuk menjalankan `Keryx` dalam komputer yang memiliki sambungan internet.
 
-`Keryx` can be run on **ANY** computer with `Python` and `wxPython` installed, meaning Windows, Mac and Linux computers. Running `Keryx` on any Windows computer is nothing more than running `keryx.exe`. If you are running Keryx using `Python`, cd to the directory and run `python keryx.py` to start. Some environments support running a `python` application by double clicking it as well.
+`Keryx` dapat dijalankan pada **SEMUA** komputer yang terpasang `Python` dan `wxPython`, artinya komputer Windows, Mac dan Linux. Menjalankan `Keryx` dalam komputer Windows adalah dengan menjalankan berkas `keryx.exe`. Jika Anda menjalankan `Keryx` menggunakan `Python`, `cd` ke dalam direktori `source` dan jalankan `python keryx.py`. Beberapa `Desktop Environments` mampu menjalankan aplikasi `python` cukup dengan mengklik ganda berkas `python`-nya.
 
-After you have `Keryx` running on an internet connected host, downloading packages is as simple as opening your project and selecting the packages to download.
-Keryx will automatically select the package dependencies for you making sure that nothing is left behind. Any packages you download are saved to your project's folder in the `packages` directory.
+Setelah Anda membuaka `Keryx` pada komputer yang memiliki sambungan internet, mengunduh paket semudah membuka `project` Anda dan memilih paket untuk diunduh.
+`Keryx` akan secara otomatis memilih paket yang menjadi ketergantungan (*dependencies*) dan memastikan semua yang diperlukan terunduh. Setiap paket yang telh diunduh akan disimpan pada map `project` dalam direktori `packages`.
 
-When you are finished you can return to your project computer and install the packages through the usual way.
-
-### Uninstallation/Upgrading
-
-Extract the newest version over top, replacing all files.
+Setelah selesai, kembali ke komputer (*offline*) dan pasang paket seperti biasa.
 
 ### Thanks
 
-* Buran Ayuthia
-* John Gleissner
-* mac9416
-* jacseen
-* Kevin Buente
-* Douglass Clem
-* Cory Thompson
-* Mark James - Silk Icon Set - [http://www.famfamfam.com/lab/icons/silk/](http://www.famfamfam.com/lab/icons/silk/)
-* Tiziano Tissino - ProportionalSplitter
-* Ingelrest François - Plugin framework base
-* heylove - Logo is based off areao.42-Icons
-* Anyone else I forgot to mention
+```sh
+*Original thanks* dapat dibaca di  doc/README
+```
 
-### Projects/Profile Contributors
+#### Projects/Profile Contributors
 
 * @ariesm : elementaryos-freya-32bit, ubuntu-14.10-64bit, lxle-14.04.2-64bit, xubuntu-14.04.2-64bit
 * @mas_aiz : linuxmint-17-kde-64bit
 * @isnusindang : elementaryos-freya-32bit, kubuntu-15.04-32bit, ubuntu-14.10-32bit
 
-### Additional Notes:
+### Catatan tambahan
 
-Command line parameters:
+Parameter baris perintah:
 
 ```sh
--h or --help                            Displays this message
--v or --version                         Displays Keryx version number
---create <project name> <plugin name>   Creates a new project in the default
-                                        directory with name of <project name>
-                                        and type project <plugin name>
---config <file>                         Uses <file> to as configuration file
+-h or --help                            Menampilkan pesan ini
+-v or --version                         Menampilkan versi Keryx
+--create <nama project> <nama plugin>   Membuat project baru dalam direktori
+                                        dengan <nama project> dan jenis project
+                                        <nama plugin>
+--config <berkas>                       Gunakan <berkas> sebagai configuration file
 ```
 
-Due to `py2exe`'s nature, information printed to the console is **NOT** displayed.
-While the command line parameters will still work properly, no indication of success will be shown in the console. The information will still be written in the log files for further review.
+Karena sifat `py2exe`'s, keterangan yang tampil pada `console` **TIDAK** ditampilkan.
+Sementara parameter baris perintah akan tetap bekerja dengan benar, tidak ada indikasi yang tampil pada `console`. Informasi akan tetap dituliskan pada berkas `log` untuk telaah lanjutan.
