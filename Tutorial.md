@@ -36,7 +36,7 @@ Jalankan berkas `win32/keryx.exe`.
 
 Di awal membuka `Keryx`, masukkan nama *project* Anda, atau biarkan sesuai *default* dan klik tombol `New Project`.
 
-![Membuat project](https://github.com/rizaumami/keryx/doc/Tutorial_Files/Create_Project.png)
+![Membuat project](https://github.com/rizaumami/keryx/blob/master/doc/Tutorial_Files/Create_Project.png)
 
 Ketika ditanya apakah Anda ingin mengunduh daftar paket terkini, pilih `No`, kemudian tutup `Keryx`.
 
@@ -44,7 +44,7 @@ Ketika ditanya apakah Anda ingin mengunduh daftar paket terkini, pilih `No`, kem
 
 Jalankan `Keryx` dan pilih *project* Abda dari menu *drop-down* paling bawah. Kemudian klik `Open Project`.
 
-![Membuat project](https://github.com/rizaumami/keryx/doc/Tutorial_Files/Open_Project.png)
+![Membuat project](https://github.com/rizaumami/keryx/blob/master/doc/Tutorial_Files/Open_Project.png)
 
 Jika Anda ingin memiliki daftar paket terkini sesuai di *mirror/repo*, pilih `Yes` ketika ditanya apakah akan mengunduh daftar paket terkini (disarankan).
 
