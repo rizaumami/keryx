@@ -1,8 +1,8 @@
-# Tutrial Keryx
+# Tutorial Keryx
 
 ### Mendapatkan Keryx
 
-Unduh `Keryx` dengan melakukan:
+Unduh `Keryx` dari [https://launchpad.net/keryx/+download](https://launchpad.net/keryx/+download) atau dari repo github yang saya buat dengan cara:
 
 ```sh
 git clone https://github.com/rizaumami/keryx.git
@@ -32,7 +32,7 @@ Ketika ditanya apakah Anda ingin mengunduh daftar paket terkini, pilih `No`, kem
 
 ### Membuka Project (di komputer online)
 
-Jalankan `Keryx` dan pilih *project* Abda dari menu *drop-down* paling bawah. Kemudian klik `Open Project`.
+Jalankan `Keryx` dan pilih *project* Anda dari menu *drop-down* paling bawah. Kemudian klik `Open Project`.
 
 ![Membuat project](https://github.com/rizaumami/keryx/blob/master/doc/Tutorial_Files/Open_Project.png)
 
@@ -42,6 +42,10 @@ Jika Anda ingin memiliki daftar paket terkini sesuai di *mirror/repo*, pilih `Ye
 
 Buka `project` Anda dan pilih `Install Packages` dari menu `Project`. Periksa semua paket yang ingin Anda pasang dan klik `Continue`.
 
+![Install Paket](https://raw.githubusercontent.com/rizaumami/keryx/master/doc/Tutorial_Files/Install_Packages.png)
+
 Sebuah `terminal` akan menampilkan laju pemasangan paket. Setelah pemasangan selesai, tekan **ENTER**.
 
-Agar `Keryx` Menyadari bahwa Anda telah memiliki paket baru terpasang di komputer, Anda harus memutakhirkan **project status** (`Project` > `Update Status`).
+![Install Paket](https://raw.githubusercontent.com/rizaumami/keryx/master/doc/Tutorial_Files/Installing_Packages.png)
+
+Agar `Keryx` Menyadari bahwa Anda telah memiliki paket baru terpasang di komputer, Anda harus memutakhirkan *project status* (`Project` > `Update Status`).

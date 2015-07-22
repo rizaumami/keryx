@@ -1,8 +1,9 @@
 # Keryx
 
-```sh
-README asli bisa dilihat di doc/README
-```
+Repo ini merupakan salinan `Keryx` v0.92.4 yang dapat ditemukan di laman proyek aslinya di [https://launchpad.net/keryx](https://launchpad.net/keryx).
+
+README asli bisa dilihat di [doc/README](doc/READM).
+
 
 ## What
 
@@ -30,7 +31,7 @@ Dua hal tidak atas tidak menjadi masalah jika komputer tersambung internet. Jika
 
 ## How
 
-Lihat tutorial asli di [doc/Tutorial.html](https://github.com/rizaumami/keryx/blob/master/doc/Tutorial.html) atau terjemahan di [Tutorial.md](Tutorial.md)
+Lihat tutorial asli di [doc/Tutorial.html](doc/Tutorial.html) atau terjemahan di [Tutorial.md](Tutorial.md)
 
 Berikut rincian prasyarat yang diperlukan agar `Keryx` dapat bekerja dengan benar.
 
