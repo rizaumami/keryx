@@ -1,0 +1,3 @@
+deb http://archive.ubuntu.com/ubuntu/ vivid main restricted universe
+deb http://security.ubuntu.com/ubuntu/ vivid-security main restricted universe
+deb http://archive.ubuntu.com/ubuntu/ vivid-updates main restricted universe
