@@ -30,6 +30,8 @@ Dua hal tidak atas tidak menjadi masalah jika komputer tersambung internet. Jika
 
 ## How
 
+Lihat tutorial asli di [doc/Tutorial.html](https://github.com/rizaumami/keryx/doc/Tutorial.html) atau terjemahan di [Tutorial.md](https://github.com/rizaumami/keryx/Tutorial.md)
+
 Berikut rincian prasyarat yang diperlukan agar `Keryx` dapat bekerja dengan benar.
 
 #### Windows
