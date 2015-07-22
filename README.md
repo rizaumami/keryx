@@ -2,7 +2,7 @@
 
 Repo ini merupakan salinan `Keryx` v0.92.4 yang dapat ditemukan di laman proyek aslinya di [https://launchpad.net/keryx](https://launchpad.net/keryx).
 
-README asli bisa dilihat di [doc/README](doc/READM).
+README asli bisa dilihat di [doc/README](doc/README).
 
 
 ## What
