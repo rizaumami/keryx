@@ -1,15 +1,5 @@
 # Tutrial Keryx
 
-* Getting Keryx
-* Starting Keryx
-  * On Linux
-  * On Windows
-* Creating a Project
-* Opening a Project
-* Installing Packages
-* And if something goes wrong?
-* What if everything goes right?
-
 ### Mendapatkan Keryx
 
 Unduh `Keryx` dengan melakukan:
