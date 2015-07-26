@@ -11,15 +11,15 @@ README asli bisa dilihat di [doc/README](doc/README).
 
 ## Who
 
-`Keryx` tidak hanya berguna bagi para fakir *bandwidth*, namun juga bagi mereka memiliki koneksi internet namun karena satu dan lain sebab komputernya tida mampu tersambung ke internet.
+`Keryx` tidak hanya berguna bagi para fakir *bandwidth*, namun juga bagi mereka yang memiliki koneksi internet namun karena satu dan lain sebab komputernya tidak dapat tersambung ke internet.
 
 ## Why
 
-Sistem operasi selalu berkembang, baik untuk penambahan kegunaan maupun penambalan kelemahan. Jadi sistem operasi wajib untuk selalu update.
+Sistem operasi selalu berkembang, baik untuk penambahan kegunaan maupun penambalan kelemahan. Jadi sistem operasi wajib untuk selalu *update*.
 
 Kadang pula, aplikasi yang terpasang dalam sistem operasi tidak memenuhi kebutuhan pengguna. Jadi si pengguna butuh memasang aplikasi penunjang keperluannya.
 
-Dua hal tidak atas tidak menjadi masalah jika komputer tersambung internet. Jika komputer tidak dapat tersambung internet, `Keryx` dapat membantu.
+Dua hal di atas tidak menjadi masalah jika komputer tersambung internet. Jika komputer tidak dapat tersambung internet, `Keryx` dapat membantu.
 
 ## When
 
@@ -65,20 +65,20 @@ Uraikan berkas `Keryx` (umumnya di perangkat usb).
 
 `Keryx` berdasarkan konsep `projects`. Tiap *project* menyimpan rekam jejak versi perangkat lunak yang terpasang pada komputer. Pertama memulai, Anda mesti membuat sebuah berkas *project* pada komputer (offline).
 
-Jika dalam komputer (*offline*) tidak terdapat `wxPython` namun terpasang `Python`, Anda dapat tetpa membuat `projects` menggunakan baris perintah pada `terminal`:
+Jika dalam komputer (*offline*) tidak terdapat `wxPython` namun terpasang `Python`, Anda dapat tetap membuat `projects` menggunakan baris perintah pada `terminal`:
 
 ```sh
 python keryx.py --create <project name> <plugin name>
 ```
 
-dan `Keryx` akan membuat sebuah `project` dalam map `projects`. Hal ini akan membantu mereka yang memasang Ubuntu *server* dan tidak umunya belum terpasang `wxPython`. Untuk sementara, hanya Debian yang tersedia bagi `<plugin name>`.
+dan `Keryx` akan membuat sebuah `project` dalam map `projects`. Hal ini akan membantu mereka yang memasang Ubuntu *server* dan umumnya belum terpasang `wxPython`. Untuk sementara, hanya Debian yang tersedia bagi `<plugin name>`.
 
 Ketika selesai membuat `project` ini, pastikan untuk menyalin map `Keryx` ini ke perangkat usb yang akan Anda gunakan untuk menjalankan `Keryx` dalam komputer yang memiliki sambungan internet.
 
 `Keryx` dapat dijalankan pada **SEMUA** komputer yang terpasang `Python` dan `wxPython`, artinya komputer Windows, Mac dan Linux. Menjalankan `Keryx` dalam komputer Windows adalah dengan menjalankan berkas `keryx.exe`. Jika Anda menjalankan `Keryx` menggunakan `Python`, `cd` ke dalam direktori `source` dan jalankan `python keryx.py`. Beberapa `Desktop Environments` mampu menjalankan aplikasi `python` cukup dengan mengklik ganda berkas `python`-nya.
 
-Setelah Anda membuaka `Keryx` pada komputer yang memiliki sambungan internet, mengunduh paket semudah membuka `project` Anda dan memilih paket untuk diunduh.
-`Keryx` akan secara otomatis memilih paket yang menjadi ketergantungan (*dependencies*) dan memastikan semua yang diperlukan terunduh. Setiap paket yang telh diunduh akan disimpan pada map `project` dalam direktori `packages`.
+Setelah Anda membuka `Keryx` pada komputer yang memiliki sambungan internet, mengunduh paket semudah membuka `project` Anda dan memilih paket untuk diunduh.
+`Keryx` akan secara otomatis memilih paket yang menjadi ketergantungan (*dependencies*) dan memastikan semua yang diperlukan terunduh. Setiap paket yang telah diunduh akan disimpan pada map `project` dalam direktori `packages`.
 
 Setelah selesai, kembali ke komputer (*offline*) dan pasang paket seperti biasa.
 
