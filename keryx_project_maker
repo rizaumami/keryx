@@ -245,7 +245,7 @@ fi
 #                     untuk amannya semua map /etc/apt harus disalin.
 #                   * Penamaan dan isi berkas *.keryx yang lebih informatif.
 # 2015/07/18  v0.3  * Add -s (slim) switch.
-#                     Versi sebelumnya menghasilkan berkas profil berukutan besar
+#                     Versi sebelumnya menghasilkan berkas profil berukuran besar
 #                     V0.3 diberi switch, jika memilih slim maka hanya akan 
 #                     menyalin berkas sources.lists dan status.
 #                     Jika bandwidth tidak menjadi halangan, disarankan untuk
